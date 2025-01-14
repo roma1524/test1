@@ -73,27 +73,24 @@ function App() {
         setTasks({...tasks});
     }
 
-    /*function changeStatus(taskId: string, isDone: boolean) {
-        let task = tasks.find(t => t.id === taskId);
-        if (task) {
-            task.isDone = isDone;
+    function changeStatus(taskId: string, isDone: boolean, id: string) {
+        const listT = tasks[id];
+        const currentTask = listT.find((t) => t.id === taskId);
+
+        if(currentTask) {
+            currentTask.isDone = isDone;
         }
 
-        setTasks([...tasks]);
-    }*/
+        setTasks({...tasks});
+    }
 
-
-    /*  let tasksForTodolist = tasks;
-
-      if (filter === "active") {
-          tasksForTodolist = tasks.filter(t => t.isDone === false);
-      }
-      if (filter === "completed") {
-          tasksForTodolist = tasks.filter(t => t.isDone === true);
-      }*/
-
-    function changeFilter(value: FilterValuesType) {
-        setFilter(value);
+    function changeFilter(value: FilterValuesType, id: string) {
+        let filteredItems = todolists.find(el => el.id === id)
+        console.log(filteredItems);
+        if(filteredItems) {
+            filteredItems.filter = value;
+            setTodolists([...todolists])
+        }
     }
 
 
@@ -101,15 +98,15 @@ function App() {
         <div className="App">
             {todolists.map(items => {
 
-                let tasksForTodolist: any = tasks[items.id];
+                let tasksForTodolist = tasks[items.id];
 
-                if (filter === "active") {
+                if (items.filter === "active") {
                     tasksForTodolist = tasks[items.id].filter(t => t.isDone === false);
                 }
-                if (filter === "completed") {
+                if (items.filter === "completed") {
                     tasksForTodolist = tasks[items.id].filter(t => t.isDone === true);
                 }
-                console.log(tasksForTodolist)
+
                 return (<Todolist
                     listId={items.id}
                     title="What to learn"
@@ -117,7 +114,7 @@ function App() {
                     removeTask={removeTask}
                     changeFilter={changeFilter}
                     addTask={addTask}
-                    // changeTaskStatus={changeStatus}
+                    changeTaskStatus={changeStatus}
                     filter={filter}
                 />)
             })}
