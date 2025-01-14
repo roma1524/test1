@@ -24,13 +24,6 @@ export type TodolistsPropsType = {
 
 function App() {
 
-    /* let [tasks, setTasks] = useState<TaskPropsType[]>([
-         {id: v1(), title: "HTML&CSS", isDone: true},
-         {id: v1(), title: "JS", isDone: true},
-         {id: v1(), title: "ReactJS", isDone: false},
-         {id: v1(), title: "Rest API", isDone: false},
-         {id: v1(), title: "GraphQL", isDone: false},
-     ]);*/
     let [filter, setFilter] = useState<FilterValuesType>("all");
 
     let todolistID1 = v1();
@@ -77,7 +70,7 @@ function App() {
         const listT = tasks[id];
         const currentTask = listT.find((t) => t.id === taskId);
 
-        if(currentTask) {
+        if (currentTask) {
             currentTask.isDone = isDone;
         }
 
@@ -86,8 +79,8 @@ function App() {
 
     function changeFilter(value: FilterValuesType, id: string) {
         let filteredItems = todolists.find(el => el.id === id)
-        console.log(filteredItems);
-        if(filteredItems) {
+
+        if (filteredItems) {
             filteredItems.filter = value;
             setTodolists([...todolists])
         }
@@ -115,18 +108,10 @@ function App() {
                     changeFilter={changeFilter}
                     addTask={addTask}
                     changeTaskStatus={changeStatus}
-                    filter={filter}
+                    filter={items.filter}
                 />)
             })}
 
-            {/*<Todolist title="What to learn"*/}
-            {/*          tasks={tasksForTodolist}*/}
-            {/*          removeTask={removeTask}*/}
-            {/*          changeFilter={changeFilter}*/}
-            {/*          addTask={addTask}*/}
-            {/*          changeTaskStatus={changeStatus}*/}
-            {/*          filter={filter}*/}
-            {/*/>*/}
         </div>
     );
 }
