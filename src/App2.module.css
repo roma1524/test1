@@ -1,0 +1,81 @@
+.header {
+    background-color: green;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    alignItems: center;
+    margin-bottom: 50px;
+}
+
+.appContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    alignItems: flex-start;
+margin-bottom: 20px;
+
+}
+
+.ftContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    alignItems: center;
+    border: 1px solid green;
+    padding: 1rem;
+}
+
+.headerFT {
+    margin-bottom: 0.25rem;
+}
+
+.dateHeader {
+    margin: 0.25rem;
+    cursor: pointer;
+}
+
+.addNewRouteContainer {
+    display: flex;
+    align-items: center; /* Исправлено с alignItems на align-items */
+    background-color: green; /* Исправлено с backgroundColor на background-color */
+    padding: 0.5rem;
+}
+
+.ftTable {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+.ftRow {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem 0;
+}
+
+.ftCell {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+.pointerCursor {
+    cursor: pointer;
+}
+
+.checkboxContainer {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.hoverEffect:hover {
+    color: green;
+}
+
+.addNewItemWrapper{
+    display: flex;
+    alignItems: center;
+    padding: 0.5rem
+}
