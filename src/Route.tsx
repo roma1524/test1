@@ -4,10 +4,11 @@ import styles from "./App2.module.css";
 import {CheckBox} from "./components/CheckBox";
 import {Button} from "./components/Button";
 import {RouteType} from "./FlightTable";
+import {useState} from "react";
 
 type RouteProps = {
     route: RouteType
-    toggleFTIsBooked: (flightTableID: string, routeID: string) => void;
+    toggleFTIsBooked: (flightTableID: string, routeID: string, isBooked: boolean) => void;
     flightTableID: string;
     updateFTRoutesFrom: (flightID: string, routeID: string, newFrom: string) => void;
     updateFTRoutesTo: (flightID: string, routeID: string, newTo: string) => void;
@@ -23,8 +24,9 @@ export const Route = ({
                           updateFTRoutesTo,
                           removeFTRoute
                       }: RouteProps) => {
+
     const handleRemoveFTRoute = () => {
-        alert('Почини меня, чтобы я могла удалять рейс. Сделай это через универсальную кнопку.')
+        removeFTRoute(flightTableID, route.id)
     };
 
     const handleUpdateRouteFrom = () => {
@@ -35,8 +37,8 @@ export const Route = ({
         //updateFTRoutesTo();
     }
 
-    const handleToggleFTIsBooked = () => {
-        alert('Во мне куча ошибок!')
+    const handleToggleFTIsBooked = (isBookedValue: boolean) => {
+        toggleFTIsBooked(flightTableID, route.id, isBookedValue)
     }
 
     return (
@@ -48,13 +50,13 @@ export const Route = ({
                         <button onClick={handleRemoveFTRoute}>X</button>
                     </td>
                     <td className={`${styles.ftCell} ${styles.pointerCursor}`}>
-                        <UpdateItem oldTitle={route.from} callBack={() => 'handleUpdateRouteFrom'}/>
+                        <UpdateItem currentDate={route.from} callBack={() => 'handleUpdateRouteFrom'}/>
                     </td>
                     <td className={`${styles.ftCell} ${styles.pointerCursor}`}>
                         ➔
                     </td>
                     <td className={`${styles.ftCell} ${styles.pointerCursor}`}>
-                        <UpdateItem oldTitle={route.to} callBack={() => 'handleUpdateRouteTo'}/>
+                        <UpdateItem currentDate={route.to} callBack={() => 'handleUpdateRouteTo'}/>
                     </td>
                     <td className={styles.checkboxContainer}>
                         <label>

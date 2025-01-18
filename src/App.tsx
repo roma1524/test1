@@ -9,7 +9,7 @@ import {AddNewItem} from "./components/AddNewItem";
 
 function App() {
     //TODO: ТРИ задания от простого к сложному:
-    //TODO: 1. Не работает кнопка удаления маршрута (routes) в App ничего править не нужно -ok
+    //TODO: 1. Не работает кнопка удаления маршрута (routes) в App ничего править не нужно -ok   DONE
     //TODO: 2. Не работает ЧЕКБОКС -ошибки даже в APP! Вместо того чтобы передавать значение,в функции перещелкивается противоположное! -ok
     //TODO: 3. Обновление МАРШРУТА И ДАТЫ научились работать без функции в App, это нормально? Но в App ничего править не нужно
     //TODO: 3. Вначале почини ДАТУ, а потом убедись, что и ОБНОВЛЕНИЕ МАРШРУТА "починилось" каким-то волшебным образом, но так ли это?
@@ -67,16 +67,11 @@ function App() {
         ));
     };
 
-    const toggleFTIsBooked = (flightTableID: string, routeID: string) => {
-        setFlightTables(flightTables.map(ft =>
-            ft.flightTableID === flightTableID ? {
-                    ...ft,
-                    routes: ft.routes.map(route =>
-                        route.id === routeID ? {...route, isBooked: !route.isBooked} : route
-                    )
-                }
-                : ft
-        ));
+    const toggleFTIsBooked = (flightTableID: string, routeID: string, isBooked: boolean) => {
+        setFlightTables(prevState => prevState.map(el => el.flightTableID === flightTableID ?
+            {...el, routes: el.routes.map(t => t.id === routeID ? {...t, isBooked} : t)}
+            :
+            el))
     };
 
     const addNewFT = (from: string, to: string) => {
@@ -94,10 +89,11 @@ function App() {
         setFlightTables(flightTables.filter(ft => ft.flightTableID !== flightTableID));
     };
 
-    const updateFTDate = (flightTableID: string, newDate: string) => {
-        setFlightTables(flightTables.map(ft =>
-            ft.flightTableID === flightTableID ? {...ft, date: newDate} : ft
-        ));
+    const updateFTDate = (flightTableID: string, date: string) => {
+        setFlightTables(prevState => prevState.map(el => el.flightTableID === flightTableID ?
+            {...el, date}
+            : el
+        ))
     };
 
     const updateFTRoutesFrom = (flightTableID: string, routeID: string, newFrom: string) => {
@@ -136,7 +132,7 @@ function App() {
                         <FlightTable
                             key={el.flightTableID}
                             flightTableID={el.flightTableID}
-                            date={el.date}
+                            currentDate={el.date}
                             routes={el.routes}
                             toggleFTIsBooked={toggleFTIsBooked}
                             removeFT={removeFT}
