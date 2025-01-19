@@ -4,13 +4,13 @@ import {Input} from "./Input";
 import styles from '../App2.module.css';
 
 type UpdateRouteProps = {
-    currentDate: string;
-    callBack: (editedDate: string) => void;
+    prevValue: string;
+    callBack: (editedValue: string) => void;
 };
 
-export const UpdateItem = ({currentDate, callBack}: UpdateRouteProps) => {
+export const UpdateItem = ({prevValue, callBack}: UpdateRouteProps) => {
     const [edit, setEdit] = useState(false);
-    const [newTitle, setNewTitle] = useState(currentDate);
+    const [newTitle, setNewTitle] = useState(prevValue);
 
     const editHandler = () => {
         callBack(newTitle);
@@ -20,7 +20,7 @@ export const UpdateItem = ({currentDate, callBack}: UpdateRouteProps) => {
     return (
         edit
             ? <Input newTitle={newTitle} setNewTitle={setNewTitle} editHandler={editHandler}/>
-            : <span className={styles.hoverEffect} onDoubleClick={() => setEdit(true)}>{newTitle}</span>
+            : <span className={styles.hoverEffect} onDoubleClick={() => setEdit(true)}>{prevValue}</span>
     );
 };
 

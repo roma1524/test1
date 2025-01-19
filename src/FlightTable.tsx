@@ -67,7 +67,7 @@ export const FlightTable = ({
             <Button title="Remove FlightTable" onClick={removeFlightTableHandler}/>
             <h2 className={styles.headerFT}>FlightTable ID: </h2>
             <h2 className={styles.dateHeader}>
-                Date: <UpdateItem currentDate={currentDate} callBack={updateFTDateHandler}/>
+                Date: <UpdateItem prevValue={currentDate} callBack={updateFTDateHandler}/>
             </h2>
             <div className={styles.addNewRouteContainer}>
                 <AddNewItem
