@@ -61,6 +61,7 @@ function App() {
     }
 
     function addTodoList(title: string) {
+        console.log('dsds2222')
         const newIdForTodoList = v1();
         const newTodoList = {id: newIdForTodoList, title}
         setTodolists([newTodoList, ...todolists])
@@ -88,7 +89,7 @@ function App() {
 
     return (
         <div className="App">
-            <AddItemInput addTodoList={addTodoList} />
+            <AddItemInput addTodoList={addTodoList}/>
             {todolists.map((el) => {
                 return (
                     <Todolist
@@ -98,11 +99,10 @@ function App() {
                         tasks={tasks[el.id].data}
                         removeTask={removeTask}
                         changeFilter={changeFilter}
-                        addTask={addTask}
                         changeTaskStatus={changeStatus}
                         filter={tasks[el.id].filter}
                         removeTodolist={removeTodolist}
-                        addTodoList={addTodoList}
+                        addTask={addTask}
                     />
                 )
             })}

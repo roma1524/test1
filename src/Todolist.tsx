@@ -14,17 +14,13 @@ type PropsType = {
     tasks: Array<TaskType>
     removeTask: (todolistId: string, taskId: string) => void
     changeFilter: (todolistId: string, filter: FilterValuesType) => void
-    addTask: (todolistId: string, title: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
     filter: FilterValuesType
     removeTodolist: (todolistId: string) => void
-    addTodoList: (title: string) => void
+    addTask: (todolistId: string, title: string) => void
 }
 
 export function Todolist(props: PropsType) {
-
-    let [title, setTitle] = useState("")
-    let [error, setError] = useState<string | null>(null)
 
     let tasksForTodolist = props.tasks;
     if (props.filter === "active") {
@@ -49,7 +45,7 @@ export function Todolist(props: PropsType) {
 
         </h3>
 
-        <AddItemInput callback={props.addTask} todolistId={props.todolistId}/>
+        <AddItemInput addTask={props.addTask} todolistId={props.todolistId}/>
 
         <ul>
             {

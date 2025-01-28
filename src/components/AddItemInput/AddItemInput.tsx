@@ -1,9 +1,9 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type AddItemInputPropsType = {
-    callback?: (todolistId: string, title: string) => void;
+    addTodoList?: (title: string) => void;
+    addTask?: (todolistId: string, title: string) => void;
     todolistId?: string
-    addTodoList?: (title: string) => void
 }
 
 export const AddItemInput = (props: AddItemInputPropsType) => {
@@ -11,21 +11,11 @@ export const AddItemInput = (props: AddItemInputPropsType) => {
     const [title, setTitle] = useState("")
     const [error, setError] = useState<string | null>(null)
 
-    // const addTask = () => {
-    //     if (title.trim() !== "") {
-    //         if(props.callback && props.todolistId) {
-    //             props.callback(props.todolistId, title.trim());
-    //         }
-    //         setTitle("");
-    //     } else {
-    //         setError("Title is required");
-    //         setTitle("");
-    //     }
-    // }
-
     const addTask = () => {
         if (title.trim() !== "") {
-            if(props.addTodoList) {
+            if(props.todolistId && props.addTask) {
+                props.addTask(props.todolistId, title.trim());
+            } else if(props.addTodoList) {
                 props.addTodoList(title.trim());
             }
             setTitle("");
